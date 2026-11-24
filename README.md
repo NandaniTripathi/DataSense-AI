@@ -201,10 +201,3 @@ Uploaded datasets and the metadata DB live in `DATA_DIR` (`/data`, a persistent 
 * In-memory rate limiter is per process. Use Redis if you run several workers.
 * Answers stream in one piece (no token streaming yet).
 
-## Interview talking points
-* Why SQL generation instead of `exec()` on model-written Python (security), and the four-layer sandbox.
-* Tool-use agent loop with self-repair; why the LLM only sees schema + small previews (privacy, cost, accuracy).
-* Provider-neutral message format translated to OpenAI-style tool calls inside `llm.py`; model configurable via `GROQ_MODEL`.
-* Designing around an unreliable tool-calling model: validation at every step, bounded loops, a tool-free JSON-mode fallback, and tests with a scripted fake client.
-* Robust statistics (MAD) vs plain z-scores for anomaly detection; Isolation Forest for multivariate outliers.
-* Separation of concerns: routers (HTTP) / services (logic) / `llm.py` (vendor boundary), so the model can be swapped without touching business logic.
