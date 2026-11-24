@@ -1,0 +1,11 @@
+services:
+  datasense:
+    build: .
+    ports: ["8000:8000"]
+    env_file: ./backend/.env        # contains GROQ_API_KEY
+    environment:
+      DATA_DIR: /data
+    volumes:
+      - datasense-data:/data        # uploaded datasets survive restarts
+volumes:
+  datasense-data:

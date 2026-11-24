@@ -1,0 +1,19 @@
+# Render Blueprint: one web service built from the Dockerfile.
+# After creating it, set GROQ_API_KEY in the Render dashboard (never commit it).
+services:
+  - type: web
+    name: datasense-ai
+    runtime: docker
+    plan: starter
+    healthCheckPath: /api/health
+    envVars:
+      - key: GROQ_API_KEY
+        sync: false
+      - key: GROQ_MODEL
+        value: openai/gpt-oss-120b
+      - key: DATA_DIR
+        value: /data
+    disk:
+      name: datasense-data
+      mountPath: /data
+      sizeGB: 1
